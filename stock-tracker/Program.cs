@@ -49,8 +49,9 @@ foreach(var stock in stocks)
             table.AddRow(ColouredColumn.GetColouredColumn("> Research & Development", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment)).Take(5).ToList()));
             table.AddRow(ColouredColumn.GetColouredColumn("> Selling general & Administrative", incomeStatement.annualReports.Select(x => decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
             table.AddRow(ColouredColumn.GetBoldColouredColumn("> Total Operating Expenses", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment) + decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
-            table.AddRow(ColouredColumn.GetBoldColouredColumn("> Total Operating Expenses", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment) + decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
-            table.AddRow(ColouredColumn.GetBoldColouredColumn("Operating Income or Loss", incomeStatement.annualReports.Select(x => decimal.Parse(x.grossProfit) - decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetBoldColouredColumn("Operating Income or Loss", incomeStatement.annualReports.Select(x => decimal.Parse(x.grossProfit) - decimal.Parse(x.researchAndDevelopment) - decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetColouredColumn("Interest Expense", incomeStatement.annualReports.Select(x => decimal.Parse(x.interestExpense)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetColouredColumn("Total other income/expenses net", incomeStatement.annualReports.Select(x => decimal.Parse(x.otherNonOperatingIncome)).Take(5).ToList()));
             
 
             AnsiConsole.Write(table);
