@@ -45,11 +45,14 @@ foreach(var stock in stocks)
             table.AddRow(ColouredColumn.GetColouredColumn("Total Revenue", incomeStatement.annualReports.Select(x => decimal.Parse(x.totalRevenue)).Take(5).ToList()));
             table.AddRow(ColouredColumn.GetColouredColumn("Cost of Revenue", incomeStatement.annualReports.Select(x => decimal.Parse(x.costOfRevenue)).Take(5).ToList()));
             table.AddRow(ColouredColumn.GetColouredColumn("Gross Profit", incomeStatement.annualReports.Select(x => decimal.Parse(x.grossProfit)).Take(5).ToList()));
-            table.AddRow("Operating Expenses", "-", "-", "-", "-");
-            table.AddRow(ColouredColumn.GetColouredColumn("Gross Profit", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment)).Take(5).ToList()));
-            table.AddRow(ColouredColumn.GetColouredColumn("Selling general & Administrative", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment)).Take(5).ToList()));
-            table.AddRow(ColouredColumn.GetColouredColumn("Total Operating Expenses", incomeStatement.annualReports.Select(x => decimal.Parse(x.operatingExpenses)).Take(5).ToList()));
+            table.AddRow("[underline]Operating Expenses[/]", "[yellow]-[/]", "[yellow]-[/]", "[yellow]-[/]", "[yellow]-[/]");
+            table.AddRow(ColouredColumn.GetColouredColumn("> Research & Development", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetColouredColumn("> Selling general & Administrative", incomeStatement.annualReports.Select(x => decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetBoldColouredColumn("> Total Operating Expenses", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment) + decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetBoldColouredColumn("> Total Operating Expenses", incomeStatement.annualReports.Select(x => decimal.Parse(x.researchAndDevelopment) + decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
+            table.AddRow(ColouredColumn.GetBoldColouredColumn("Operating Income or Loss", incomeStatement.annualReports.Select(x => decimal.Parse(x.grossProfit) - decimal.Parse(x.sellingGeneralAndAdministrative)).Take(5).ToList()));
             
+
             AnsiConsole.Write(table);
         }
 
